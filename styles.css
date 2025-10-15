@@ -7,7 +7,6 @@
 
 .container {
     display: flex;
-
     flex: 1;
     flex-direction: column;
 }
@@ -43,17 +42,13 @@
     display: flex;
 }
 
-.number-key, .zero-key, .dot-key{
+.number-key, .dot-key, .zero-key, .equal-key{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     flex: 0 0 33.3333%;
     
-}
-
-.zero-key {
-    flex: 1;
 }
 
 .operation-key {
