@@ -3,7 +3,6 @@ function add(x, y) {
     const num = x + y;
     return parseFloat(num.toFixed(2));
   } else {
-    console.log(typeof x);
     return parseInt(x + y);
   }
 }
@@ -41,7 +40,7 @@ function operate(x, operator, y) {
       return add(parseFloat(x), parseFloat(y));
     case "-":
       return subtract(parseFloat(x), parseFloat(y));
-    case "x":
+    case "X":
       return multiply(parseFloat(x), parseFloat(y));
     case "/":
       return divide(parseFloat(x), parseFloat(y));
@@ -54,12 +53,28 @@ let btn = document.querySelectorAll(".number-key");
 let operators = document.querySelectorAll(".operation-key");
 let currentOperation = null;
 let firstOperand = "";
-
 let equal = document.querySelector(".equal-key");
+let clear = document.querySelector(".clear-key");
+let remove = document.querySelector(".remove-key");
+let state = 0;
+
+clear.addEventListener("click", () => {
+  content.innerText = "";
+  firstOperand = "";
+  secondOperand = "";
+  currentOperation = null;
+});
 
 btn.forEach((button) => {
   button.addEventListener("click", () => {
-    content.innerText += button.innerText;
+    if ((state == 0)) {
+      content.innerText += button.innerText;
+    } else {
+      content.innerText = "";
+      state = 0;
+      currentOperation = null;
+      content.innerText += button.innerText;
+    }
   });
 });
 
@@ -73,21 +88,30 @@ operators.forEach((button) => {
   });
 });
 
+remove.addEventListener("click", () => {
+  let secondOperand = content.innerText.slice(firstOperand.length + 1);
+  if (currentOperation == null) {
+    content.innerText = "";
+  } else {
+    if (secondOperand !== "") {
+      secondOperand = "";
+      content.innerText = firstOperand + currentOperation;
+    } else {
+      currentOperation = null;
+      content.innerText = firstOperand;
+    }
+  }
+});
+
 equal.addEventListener("click", () => {
-    let secondOperand = content.innerText.slice(firstOperand.length + 1);
-    console.log(firstOperand);
-    console.log(secondOperand)
-    console.log(currentOperation)
+  let secondOperand = content.innerText.slice(firstOperand.length + 1);
+  state = 1;
   if (
     firstOperand != null &&
     secondOperand != null &&
     currentOperation != null
   ) {
-    content.innerText = operate(
-      firstOperand,
-      currentOperation,
-      secondOperand
-    );
+    content.innerText = operate(firstOperand, currentOperation, secondOperand);
   } else {
     content.innerText = "";
   }
