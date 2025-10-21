@@ -176,3 +176,10 @@ equal.addEventListener("click", () => {
   }
 });
 
+module.exports = {
+  add,
+  subtract,
+  multiply,
+  divide,
+  operate,
+};
