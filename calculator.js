@@ -175,11 +175,3 @@ equal.addEventListener("click", () => {
     content.innerText = "";
   }
 });
-
-module.exports = {
-  add,
-  subtract,
-  multiply,
-  divide,
-  operate,
-};
