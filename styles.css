@@ -18,6 +18,11 @@
     justify-content: end;
 }
 
+.separator {
+    display: flex;
+    flex-direction: row;
+}
+
 .main-container {
     display: flex;
 }
@@ -28,18 +33,19 @@
 
 .number-container {
     display: flex;
-
     flex: 3;
     flex-wrap: wrap;
 }
 
 .operation-container {
+    display: flex;
     flex-direction: column;
-
 }
 
 .keyboard {
     display: flex;
+    flex-direction: column;
+    flex: 4;
 }
 
 .number-key, .dot-key, .zero-key, .equal-key{

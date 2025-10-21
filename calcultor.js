@@ -48,9 +48,9 @@ function operate(x, operator, y) {
 }
 
 let content = document.querySelector(".result");
-content.innerText = "";
 let btn = document.querySelectorAll(".number-key");
 let operators = document.querySelectorAll(".operation-key");
+let sign = document.querySelector(".sign-key");
 let currentOperation = null;
 let firstOperand = "";
 let equal = document.querySelector(".equal-key");
@@ -88,6 +88,12 @@ operators.forEach((button) => {
   });
 });
 
+sign.addEventListener("click", () => {
+  let int = parseFloat(content.innerText);
+    int = 0 - int;
+    content.innerText = `${int}`
+})
+
 remove.addEventListener("click", () => {
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
   if (currentOperation == null) {
@@ -117,4 +123,6 @@ equal.addEventListener("click", () => {
   }
 });
 
-// if operation key is pressed, loop stops
+// TODO:
+// 1. Make it so that if negative sign id pressed before anything, the number is negative
+// 2. Change signs, when the button is pressed the sign of the number changes
