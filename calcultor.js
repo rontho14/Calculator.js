@@ -26,11 +26,15 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  if ((x / y) % 1 != 0) {
-    const num = x / y;
-    return parseFloat(num.toFixed(2));
+  if (y === 0) {
+    return "DONT DIVIDE BY ZERO BRO!";
   } else {
-    return parseInt(x / y);
+    if ((x / y) % 1 != 0) {
+      const num = x / y;
+      return parseFloat(num.toFixed(2));
+    } else {
+      return parseInt(x / y);
+    }
   }
 }
 
@@ -67,7 +71,7 @@ clear.addEventListener("click", () => {
 
 btn.forEach((button) => {
   button.addEventListener("click", () => {
-    if ((state == 0)) {
+    if (state == 0) {
       content.innerText += button.innerText;
     } else {
       content.innerText = "";
@@ -81,18 +85,31 @@ btn.forEach((button) => {
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     if (currentOperation == null) {
+      state = 0;
       currentOperation = button.innerText;
       firstOperand = content.innerText;
       content.innerText += button.innerText;
+    } else if (currentOperation !== null && content.innerText != "") {
+      let secondOperand = content.innerText.slice(firstOperand.length + 1);
+      content.innerText = operate(
+        firstOperand,
+        currentOperation,
+        secondOperand
+      );
+      secondOperand = "";
+      currentOperation = button.innerText;
+      firstOperand = content.innerText;
+      content.innerText += button.innerText;
+      
     }
   });
 });
 
 sign.addEventListener("click", () => {
   let int = parseFloat(content.innerText);
-    int = 0 - int;
-    content.innerText = `${int}`
-})
+  int = 0 - int;
+  content.innerText = `${int}`;
+});
 
 remove.addEventListener("click", () => {
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
@@ -110,6 +127,7 @@ remove.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", () => {
+
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
   state = 1;
   if (
@@ -118,11 +136,13 @@ equal.addEventListener("click", () => {
     currentOperation != null
   ) {
     content.innerText = operate(firstOperand, currentOperation, secondOperand);
+    currentOperation = null;
   } else {
     content.innerText = "";
   }
 });
 
 // TODO:
-// 1. Make it so that if negative sign id pressed before anything, the number is negative
-// 2. Change signs, when the button is pressed the sign of the number changes
+// 3. Implement decimal button but only allow one decimal (MEDIUM)
+// 4. add keyboard support (LOW)
+
