@@ -44,7 +44,7 @@ function operate(x, operator, y) {
       return add(parseFloat(x), parseFloat(y));
     case "-":
       return subtract(parseFloat(x), parseFloat(y));
-    case "X":
+    case "x":
       return multiply(parseFloat(x), parseFloat(y));
     case "/":
       return divide(parseFloat(x), parseFloat(y));
@@ -101,7 +101,6 @@ operators.forEach((button) => {
       currentOperation = button.innerText;
       firstOperand = content.innerText;
       content.innerText += button.innerText;
-      
     }
   });
 });
@@ -114,14 +113,14 @@ sign.addEventListener("click", () => {
 
 decimal.addEventListener("click", () => {
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
-  if (currentOperation == null && content.innerText.includes(".")){
+  if (currentOperation == null && content.innerText.includes(".")) {
     alert("Can't add more decimals bro!");
-  } else if(currentOperation !== null && secondOperand.includes(".")){
+  } else if (currentOperation !== null && secondOperand.includes(".")) {
     alert("Can't add more decimals bro!");
   } else {
     content.innerText += ".";
   }
-})
+});
 
 remove.addEventListener("click", () => {
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
@@ -139,7 +138,6 @@ remove.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", () => {
-
   let secondOperand = content.innerText.slice(firstOperand.length + 1);
   state = 1;
   if (
@@ -154,7 +152,10 @@ equal.addEventListener("click", () => {
   }
 });
 
-// TODO:
-// 3. Implement decimal button but only allow one decimal (MEDIUM)
+// TODO: 
+// 1. Prettify calculator! (HIGH)
+// bug: add functionality to add - before the number to make it negative
+// bug: when 2 operators are pressed without a number, NaN is shown
+// bug: when +/- is pressed without a number, NaN
+// 2. add bigInt support (medium)
 // 4. add keyboard support (LOW)
-
