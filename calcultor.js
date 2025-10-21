@@ -1,39 +1,55 @@
 function add(x, y) {
-  if ((x + y) % 1 != 0) {
-    const num = x + y;
-    return parseFloat(num.toFixed(2));
+  if (x + y > Number.MAX_SAFE_INTEGER) {
+    return "TOO BIG!!! I CAN'T HANDLE IT AAAAAH";
   } else {
-    return parseInt(x + y);
+    if ((x + y) % 1 != 0) {
+      const num = x + y;
+      return parseFloat(num.toFixed(2));
+    } else {
+      return parseInt(x + y);
+    }
   }
 }
 
 function subtract(x, y) {
-  if ((x - y) % 1 != 0) {
-    const num = x - y;
-    return parseFloat(num.toFixed(2));
+  if (x + y > Number.MAX_SAFE_INTEGER) {
+    return "TOO BIG! I CAN'T HANDLE IT AAAH";
   } else {
-    return parseInt(x - y);
+    if ((x - y) % 1 != 0) {
+      const num = x - y;
+      return parseFloat(num.toFixed(2));
+    } else {
+      return parseInt(x - y);
+    }
   }
 }
 
 function multiply(x, y) {
-  if ((x * y) % 1 != 0) {
-    const num = x * y;
-    return parseFloat(num.toFixed(2));
+  if (x + y > Number.MAX_SAFE_INTEGER) {
+    return "TOO BIG!!! I CAN'T HANDLE IT AAAAAH";
   } else {
-    return parseInt(x * y);
+    if ((x * y) % 1 != 0) {
+      const num = x * y;
+      return parseFloat(num.toFixed(2));
+    } else {
+      return parseInt(x * y);
+    }
   }
 }
 
 function divide(x, y) {
-  if (y === 0) {
-    return "DONT DIVIDE BY ZERO BRO!";
+  if (x + y > Number.MAX_SAFE_INTEGER) {
+    return "TOO BIG!!! I CAN'T HANDLE IT AAAAAH";
   } else {
-    if ((x / y) % 1 != 0) {
-      const num = x / y;
-      return parseFloat(num.toFixed(2));
+    if (y === 0) {
+      return "DONT DIVIDE BY ZERO BRO!";
     } else {
-      return parseInt(x / y);
+      if ((x / y) % 1 != 0) {
+        const num = x / y;
+        return parseFloat(num.toFixed(2));
+      } else {
+        return parseInt(x / y);
+      }
     }
   }
 }
@@ -162,4 +178,3 @@ equal.addEventListener("click", () => {
 
 // TODO:
 // 2. add bigInt support (medium)
-
