@@ -60,6 +60,7 @@ let firstOperand = "";
 let equal = document.querySelector(".equal-key");
 let clear = document.querySelector(".clear-key");
 let remove = document.querySelector(".remove-key");
+let decimal = document.querySelector(".decimal-key");
 let state = 0;
 
 clear.addEventListener("click", () => {
@@ -110,6 +111,17 @@ sign.addEventListener("click", () => {
   int = 0 - int;
   content.innerText = `${int}`;
 });
+
+decimal.addEventListener("click", () => {
+  let secondOperand = content.innerText.slice(firstOperand.length + 1);
+  if (currentOperation == null && content.innerText.includes(".")){
+    alert("Can't add more decimals bro!");
+  } else if(currentOperation !== null && secondOperand.includes(".")){
+    alert("Can't add more decimals bro!");
+  } else {
+    content.innerText += ".";
+  }
+})
 
 remove.addEventListener("click", () => {
   let secondOperand = content.innerText.slice(firstOperand.length + 1);

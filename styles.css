@@ -48,7 +48,7 @@
     flex: 4;
 }
 
-.number-key, .dot-key, .zero-key, .equal-key{
+.number-key, .decimal-key, .zero-key, .equal-key{
     display: flex;
     justify-content: center;
     align-items: center;
