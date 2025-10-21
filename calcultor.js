@@ -86,10 +86,16 @@ btn.forEach((button) => {
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     if (currentOperation == null) {
-      state = 0;
-      currentOperation = button.innerText;
-      firstOperand = content.innerText;
-      content.innerText += button.innerText;
+      if (content.innerText === "" && button.innerText === "-") {
+        state = 0;
+        firstOperand = content.innerText;
+        content.innerText += button.innerText;
+      } else if (content.innerText !== "") {
+        state = 0;
+        currentOperation = button.innerText;
+        firstOperand = content.innerText;
+        content.innerText += button.innerText;
+      }
     } else if (currentOperation !== null && content.innerText != "") {
       let secondOperand = content.innerText.slice(firstOperand.length + 1);
       content.innerText = operate(
@@ -106,9 +112,11 @@ operators.forEach((button) => {
 });
 
 sign.addEventListener("click", () => {
-  let int = parseFloat(content.innerText);
-  int = 0 - int;
-  content.innerText = `${int}`;
+  if (content.innerText !== "") {
+    let int = parseFloat(content.innerText);
+    int = 0 - int;
+    content.innerText = `${int}`;
+  }
 });
 
 decimal.addEventListener("click", () => {
@@ -152,10 +160,6 @@ equal.addEventListener("click", () => {
   }
 });
 
-// TODO: 
-// 1. Prettify calculator! (HIGH)
-// bug: add functionality to add - before the number to make it negative
-// bug: when 2 operators are pressed without a number, NaN is shown
-// bug: when +/- is pressed without a number, NaN
+// TODO:
 // 2. add bigInt support (medium)
-// 4. add keyboard support (LOW)
+
