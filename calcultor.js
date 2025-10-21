@@ -176,5 +176,3 @@ equal.addEventListener("click", () => {
   }
 });
 
-// TODO:
-// 2. add bigInt support (medium)
